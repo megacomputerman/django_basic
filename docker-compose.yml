@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  web:
+    build: .
+    command: gunicorn --bind 0.0.0.0:8000 positrom2.wsgi:application
+    volumes:
+      - .:/positrom
+    expose:
+      - "8000"
+    environment:
+      - DEBUG=0
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./home/static:/static
+    depends_on:
+      - web
