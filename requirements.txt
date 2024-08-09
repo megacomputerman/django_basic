@@ -1,0 +1,5 @@
+Django
+Pillow
+pytz
+wheel 
+uwsgi
