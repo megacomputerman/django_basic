@@ -18,6 +18,7 @@ function info {
 # 1. Preparando o ambiente
 info "Instalando pacotes necessários..."
 sudo apt-get update
+sudo apt-get install -y python3-venv build-essential libssl-dev libffi-dev nginx
 #sudo apt-get install -y python3-venv python3.6-dev build-essential libssl-dev libffi-dev python-dev nginx
 
 # 2. Criar ambiente virtual
