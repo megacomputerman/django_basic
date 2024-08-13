@@ -1,5 +1,5 @@
 # Usar a imagem oficial do Python como base
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 # Configurar o diretório de trabalho
 WORKDIR /positrom
@@ -15,13 +15,18 @@ COPY . /positrom
 
 # Instalar as dependências
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+ENV DJANGO_SETTINGS_MODULE=positrom2.settings
 
 # Executar as migrações do banco de dados
 RUN python manage.py migrate
+RUN ls -ltr > /tmp/list.txt
 
 # Expor a porta que a aplicação usará
 EXPOSE 8000
 
+
 # Comando para rodar a aplicação usando Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "positrom2.wsgi:application"]
+#CMD ["gunicorn", "--bind", "0.0.0.0:8000", "positrom2.wsgi:application"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
