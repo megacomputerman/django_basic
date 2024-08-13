@@ -15,7 +15,7 @@ COPY . /positrom
 
 # Instalar as dependências
 RUN pip install --upgrade pip
-#RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Executar as migrações do banco de dados
 RUN python manage.py migrate

@@ -3,3 +3,4 @@ Pillow
 pytz
 wheel 
 uwsgi
+gunicorn
